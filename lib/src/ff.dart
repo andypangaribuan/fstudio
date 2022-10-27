@@ -205,6 +205,7 @@ class _Time {
   DateTime get nowUtc => DateTime.parse(DateTime.now().toUtc().toString().replaceAll("Z", "").replaceAll("z", ""));
 
   String toStr(String format, DateTime dt) => _util._toStr(format, dt);
+  DateTime? toDate(String format, String value) => this.format(format).toTime(value);
 
   _TimeUtil format(String format) => _TimeUtil()
     .._format = format
