@@ -10,17 +10,8 @@
   "errorLens.enabled": true,
   "errorLens.enabledInMergeConflict": true,
   "errorLens.enableOnDiffView": true,
-  "errorLens.enabledDiagnosticLevels": [
-    "error",
-    "warning",
-    "info"
-  ],
-  "errorLens.severityText": [
-    "ERROR",
-    "WARNING",
-    "INFO",
-    "HINT"
-  ],
+  "errorLens.enabledDiagnosticLevels": ["error", "warning", "info"],
+  "errorLens.severityText": ["ERROR", "WARNING", "INFO", "HINT"],
   "errorLens.messageBackgroundMode": "line",
   "dart.lineLength": 180,
   "[dart]": {
@@ -40,8 +31,8 @@
         " Created by ${author}. All Rights Reserved.",
         "",
         " This product is protected by copyright and distributed under",
-        " licenses restricting copying, distribution and decompilation.",
-      ],
+        " licenses restricting copying, distribution and decompilation."
+      ]
     }
   },
   "fileHeaderComment.template": {
@@ -49,16 +40,13 @@
       "${commentbegin}",
       "${commentprefix} ${license}",
       "${commentend}"
-    ],
+    ]
   },
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "cSpell.words": [
-      "Pangaribuan",
-      "decompilation",
-  ],
+  "cSpell.words": ["pangaribuan", "apangaribuan", "decompilation"],
   "merge-conflict.autoNavigateNextConflict.enabled": true,
   "merge-conflict.diffViewPosition": "Current",
-  "git.mergeEditor": true,
+  "git.mergeEditor": true
 }

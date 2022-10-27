@@ -205,13 +205,122 @@ class _Time {
   DateTime get nowUtc => DateTime.parse(DateTime.now().toUtc().toString().replaceAll("Z", "").replaceAll("z", ""));
 
   String toStr(String format, DateTime dt) => _util._toStr(format, dt);
+
+  _TimeUtil format(String format) => _TimeUtil()
+    .._format = format
+    .._isCustomFormat = true;
 }
 
 class _TimeUtil {
   static final mapDateFormat = <String, DateFormat>{};
   late String _format;
+  bool _isCustomFormat = false;
 
-  DateTime? toTime(String? dt) => dt == null ? null : DateTime.parse(dt.replaceAll("T", " ").replaceAll("Z", "").replaceAll("z", ""));
+  final _month3 = {
+    "jan": "01",
+    "feb": "02",
+    "mar": "03",
+    "apr": "04",
+    "may": "05",
+    "jun": "06",
+    "jul": "07",
+    "aug": "08",
+    "sep": "09",
+    "oct": "10",
+    "nov": "11",
+    "des": "12",
+  };
+
+  DateTime? toTime(String? dt) {
+    if (dt == null) {
+      return null;
+    }
+
+    if (_isCustomFormat) {
+      dt = _reformatDtv(dt);
+    }
+
+    return DateTime.parse(dt.replaceAll("T", " ").replaceAll("Z", "").replaceAll("z", ""));
+  }
+
+  String _reformatDtv(String dt) {
+    var dtv = '';
+    var usedFormat = _format;
+
+    var date = '';
+    var time = '';
+    var ms = '';
+    
+    if (usedFormat.contains('yyyy')) {
+      final idx = usedFormat.indexOf('yyyy');
+      date = dt.substring(idx, idx + 4);
+    }
+
+    if (usedFormat.contains('MMM')) {
+      date += date.isNotEmpty ? '-' : '';
+      final idx = usedFormat.indexOf('MMM');
+      final m3 = dt.substring(idx, idx + 3).toLowerCase();
+      date += _month3[m3] ?? '';
+    } else if (usedFormat.contains('MM')) {
+      date += date.isNotEmpty ? '-' : '';
+      final idx = usedFormat.indexOf('MM');
+      date += dt.substring(idx, idx + 2);
+    }
+    
+    if (usedFormat.contains('dd')) {
+      date += date.isNotEmpty ? '-' : '';
+      final idx = usedFormat.indexOf('dd');
+      date += dt.substring(idx, idx + 2);
+    }
+
+    if (usedFormat.contains('HH')) {
+      final idx = usedFormat.indexOf('HH');
+      time = dt.substring(idx, idx + 2);
+    }
+    
+    if (usedFormat.contains('mm')) {
+      time += time.isNotEmpty ? ':' : '';
+      final idx = usedFormat.indexOf('mm');
+      time += dt.substring(idx, idx + 2);
+    }
+
+    if (usedFormat.contains('ss')) {
+      time += time.isNotEmpty ? ':' : '';
+      final idx = usedFormat.indexOf('ss');
+      time += dt.substring(idx, idx + 2);
+    }
+
+    if (usedFormat.contains('SSSSSS')) {
+      final idx = usedFormat.indexOf('SSSSSS');
+      ms = dt.substring(idx, idx + 6);
+    } else if (usedFormat.contains('SSSSS')) {
+      final idx = usedFormat.indexOf('SSSSS');
+      ms = dt.substring(idx, idx + 5);
+    } else if (usedFormat.contains('SSSS')) {
+      final idx = usedFormat.indexOf('SSSS');
+      ms = dt.substring(idx, idx + 4);
+    } else if (usedFormat.contains('SSS')) {
+      final idx = usedFormat.indexOf('SSS');
+      ms = dt.substring(idx, idx + 3);
+    } else if (usedFormat.contains('SS')) {
+      final idx = usedFormat.indexOf('SS');
+      ms = dt.substring(idx, idx + 2);
+    } else if (usedFormat.contains('S')) {
+      final idx = usedFormat.indexOf('S');
+      ms = dt.substring(idx, idx + 1);
+    }
+
+    dtv = date;
+    if (date.isNotEmpty && time.isNotEmpty) {
+      dtv += ' $time';
+    }
+
+    if (time.isNotEmpty && ms.isNotEmpty) {
+      dtv += '.$ms';
+    }
+
+    return dtv;
+  }
 
   String? toStr(DateTime? dt) => dt == null ? null : _toStr(_format, dt);
 
