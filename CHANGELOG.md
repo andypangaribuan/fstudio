@@ -1,6 +1,10 @@
 # CHANGELOG
 All notable changes to this project will be documented in this file.
 
+## 1.0.4
+### Added
+* ff.crypto.aesECBEncryptRaw, ff.crypto.aesECBDecryptRaw, and ff.crypto.aesECBDecrypt
+
 ## 1.0.3
 ### Fixed
 * typo on datetime parser for MMM format

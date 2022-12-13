@@ -11,7 +11,7 @@ part of f_guide;
 class _Crypto {
   _Crypto._();
 
-  String uint8ToHex(Uint8List byteArr) {
+  String _uint8ListToHex(Uint8List byteArr) {
     if (byteArr.isEmpty) {
       return "";
     }
@@ -31,7 +31,27 @@ class _Crypto {
     return String.fromCharCodes(result);
   }
 
-  String aesECBEncrypt({required String key, required String value}) {
+  Uint8List _hexToUint8List(String hex) {
+    if (hex.length % 2 != 0) {
+      throw 'odd number of hex digits';
+    }
+
+    var length = hex.length ~/ 2;
+    var result = Uint8List(length);
+
+    for (var i = 0; i < length; ++i) {
+      var num = int.parse(hex.substring(i * 2, (2 * (i + 1))), radix: 16);
+      if (num.isNaN) {
+        throw 'expected hex string';
+      }
+
+      result[i] = num;
+    }
+
+    return result;
+  }
+
+  Uint8List aesECBEncryptRaw({required String key, required String value}) {
     Uint8List keyData = Uint8List.fromList(utf8.encode(key));
     Uint8List plainText = Uint8List.fromList(utf8.encode(value));
 
@@ -49,6 +69,37 @@ class _Crypto {
     );
 
     final cipherText = cipher.process(plainText);
-    return uint8ToHex(cipherText);
+    return cipherText;
+  }
+
+  String aesECBEncrypt({required String key, required String value}) {
+    final cipherText = aesECBEncryptRaw(key: key, value: value);
+    return _uint8ListToHex(cipherText);
+  }
+
+  Uint8List aesECBDecryptRaw({required String key, required String value}) {
+    Uint8List keyData = Uint8List.fromList(utf8.encode(key));
+
+    PaddedBlockCipher cipher = PaddedBlockCipherImpl(
+      PKCS7Padding(),
+      ECBBlockCipher(AESEngine()),
+    );
+
+    cipher.init(
+      false,
+      PaddedBlockCipherParameters<CipherParameters, CipherParameters>(
+        KeyParameter(keyData),
+        null,
+      ),
+    );
+
+    final val = _hexToUint8List(value);
+    final cipherText = cipher.process(val);
+    return cipherText;
+  }
+
+  String aesECBDecrypt({required String key, required String value}) {
+    final cipherText = aesECBDecryptRaw(key: key, value: value);
+    return String.fromCharCodes(cipherText);
   }
 }
