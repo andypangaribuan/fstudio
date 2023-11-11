@@ -13,6 +13,8 @@ class FColumnExpandedScroll extends StatelessWidget {
   final MainAxisAlignment mainAxisAlignment;
   final CrossAxisAlignment crossAxisAlignment;
   final bool withExpanded;
+  final EdgeInsetsGeometry? padding;
+  final ScrollPhysics? scrollPhysics;
 
   const FColumnExpandedScroll({
     Key? key,
@@ -20,6 +22,8 @@ class FColumnExpandedScroll extends StatelessWidget {
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.crossAxisAlignment = CrossAxisAlignment.center,
     this.withExpanded = true,
+    this.padding,
+    this.scrollPhysics,
   }) : super(key: key);
 
   @override
@@ -31,6 +35,8 @@ class FColumnExpandedScroll extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         return SingleChildScrollView(
+          padding: padding,
+          physics: scrollPhysics,
           child: ConstrainedBox(
             constraints: BoxConstraints(minHeight: constraints.maxHeight),
             child: Column(
