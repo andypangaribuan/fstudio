@@ -23,10 +23,10 @@ class HomePage extends FPage<HomePageLogic> {
       key: logic.scaffoldKey,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Row(
+        title: const Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: const <Widget>[
+          children: <Widget>[
             Text('Home Page'),
           ],
         ),
