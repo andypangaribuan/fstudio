@@ -24,7 +24,8 @@ function help {
   sed '/function help {/d' | \
   sed -r 's/function //' | \
   sed -r 's/ \{/:/' | \
-  grep -v -- -- | \
+  sed -r 's/^--$/_____/' | \
+  grep -v _____ -- | \
   sed '/^\s*$/d' | \
   sed 'N;s/\n/###/' | \
   sed -n 's/^#: \(.*\)###\(.*\):.*/\2###→ \1/p' | \
@@ -50,6 +51,11 @@ function analyze {
   $flutter analyze
 }
 
+#: publish to pub.dev (opt: --dry-run)
+function publish {
+  $flutter pub publish $1
+}
+
 #: 
 
 #: space
@@ -57,6 +63,6 @@ function analyze {
 
 # ___ do not change ___
 case $1 in
-"") help ;;
-*) "$@" ;;
+  "") help ;;
+  *) "$@" ;;
 esac

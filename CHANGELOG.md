@@ -1,6 +1,10 @@
 # CHANGELOG
 All notable changes to this project will be documented in this file.
 
+## 1.0.6
+### Update
+* update the dependencies of rxdart and intl
+
 ## 1.0.5
 ### Update
 * on FColumnExpandedScroll, add padding and scrollPhysics

@@ -1,6 +1,6 @@
 name: fstudio
 description: Flutter framework for any platform.
-version: 1.0.5
+version: 1.0.6
 homepage: https://github.com/andypangaribuan/fstudio
 
 environment:
@@ -11,8 +11,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-  rxdart: ^0.27.5
-  intl: ^0.17.0
+  rxdart: ^0.28.0
+  intl: ^0.19.0
   clock: ^1.1.1
   pointycastle: ^3.6.2
 
