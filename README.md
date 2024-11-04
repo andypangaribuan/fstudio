@@ -1,4 +1,6 @@
-<!-- 
+<!--
+Account publishing pub.dev on iam.pangaribuan@gmail.com
+
 Publish to pub.dev
 1. Edit version on pubspec.yaml
 2. Add information on CHANGELOG.md
