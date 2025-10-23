@@ -60,6 +60,17 @@ class _Func {
     Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => widget), ModalRoute.withName(''));
   }
 
+  void pageOpenAndReplaceCurrent(BuildContext context, dynamic page) {
+    Widget widget = Container();
+    if (page is Widget) {
+      widget = page;
+    } else if (page is FPage) {
+      widget = page.getWidget();
+    }
+
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => widget));
+  }
+
   Future<T> waitNotNull<T>(T? Function() check, {int millis = 100}) async {
     T? data = check.call();
     while (data == null) {

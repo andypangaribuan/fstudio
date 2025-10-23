@@ -77,6 +77,11 @@ abstract class FPageLogic<T> {
   }
 
   // @protected
+  void pageOpenAndReplaceCurrent(dynamic page) {
+    ff.func.pageOpenAndReplaceCurrent(context, page);
+  }
+
+  // @protected
   void dismissKeyboard() => context.dismissKeyboard();
 
   @protected

@@ -1,21 +1,29 @@
 # CHANGELOG
 All notable changes to this project will be documented in this file.
 
+## 1.0.8
+### Update
+* reupload the 1.0.8 version.
+
+## 1.0.7
+### Update
+* add func pageOpenAndReplaceCurrent.
+
 ## 1.0.6
 ### Update
-* update the dependencies of rxdart and intl
+* update the dependencies of rxdart and intl.
 
 ## 1.0.5
 ### Update
-* on FColumnExpandedScroll, add padding and scrollPhysics
+* on FColumnExpandedScroll, add padding and scrollPhysics.
 
 ## 1.0.4
 ### Added
-* ff.crypto.aesECBEncryptRaw, ff.crypto.aesECBDecryptRaw, and ff.crypto.aesECBDecrypt
+* ff.crypto.aesECBEncryptRaw, ff.crypto.aesECBDecryptRaw, and ff.crypto.aesECBDecrypt.
 
 ## 1.0.3
 ### Fixed
-* typo on datetime parser for MMM format
+* typo on datetime parser for MMM format.
 
 ## 1.0.2
 ### Improve
